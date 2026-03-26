@@ -1,6 +1,7 @@
 ﻿using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Resources;
 using Xunit;
 
@@ -57,6 +58,58 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("MissingPrice"));
 
         }
+
+        /// <summary>
+        /// Vérifier qu'un produit ne peut pas être créé quand le prix ne comporte pas le bon séparateur en fonction de la culture
+        /// </summary>
+
+
+        [Theory]
+        [InlineData("dix", "fr")]
+        [InlineData("12.2", "fr")]
+        [InlineData("12,2", "en")]
+        [InlineData("12.2", "es")]
+        public void CheckProductViewModel_DoitdRenvoyerError_QuandLePrixNeCorrespondPasALaCulture(string price, string culture)
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Price = price;
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+            CultureInfo.CurrentCulture = new CultureInfo(culture);
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("PriceNotANumber"));
+        }
+
+        /// <summary>
+        ///  Vérifier qu'un produit peut être créé quand le prix comporte le bon séparateur en fonction de la culture
+        /// </summary>
+        [Theory]
+        [InlineData("12,2", "fr")]
+        [InlineData("12.2", "en")]
+        [InlineData("12,2", "es")]
+        public void ProductViewModel_ShouldBeValid_WhenPriceIsDecimalForCulture(string price, string culture)
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Price = price;
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+            CultureInfo.CurrentCulture = new CultureInfo(culture);
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.True(isValid);
+
+        }
+
 
 
 

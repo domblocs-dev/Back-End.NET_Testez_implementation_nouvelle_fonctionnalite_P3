@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using P3AddNewFunctionalityDotNetCore.Models.Validation;
+using System.Globalization;
 
 namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
 {
@@ -18,6 +20,8 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
         public string Stock { get; set; }
 
         [Required(ErrorMessageResourceName = "MissingPrice", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService), AllowEmptyStrings = false)]
+        [RegularExpression(@"^\d+(?:[.,]\d+)?$", ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
+        [DecimalByCultureAttribute(ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
         public string Price { get; set; }
     }
 }

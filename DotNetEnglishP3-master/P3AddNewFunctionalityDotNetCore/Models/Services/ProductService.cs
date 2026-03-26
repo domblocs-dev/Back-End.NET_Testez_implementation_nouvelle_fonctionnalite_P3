@@ -105,14 +105,15 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //}
 
             if (!Double.TryParse(product.Price, out double pc))
-            {
-                modelErrors.Add(_localizer["PriceNotANumber"]);
-            }
-            else
+            //{
+            //    modelErrors.Add(_localizer["PriceNotANumber"]);
+            //}
+            //else
             {
                 if (pc <= 0)
                     modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
             }
+
 
             if (product.Stock == null || string.IsNullOrWhiteSpace(product.Stock))
             {
