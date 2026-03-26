@@ -13,6 +13,10 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             new ResourceManager("P3AddNewFunctionalityDotNetCore.Resources.Models.Services.ProductService", 
                 typeof(P3AddNewFunctionalityDotNetCore.Resources.Models.Services.ProductService).Assembly);
 
+        /// <summary>
+        ///  Vérifier qu'un produit ne peux pas être créé sans un nom, et que le message d'erreur retourné est correct
+        /// </summary>
+
         [Fact]
         public void CheckProductViewModel_DoitdRenvoyerError_SiNameIsMissing()
         {
@@ -29,6 +33,34 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
             Assert.False(isValid);
             Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("MissingName"));
         }
+
+
+        /// <summary>
+        /// Vérifier qu'un produit ne peux pas être créé sans un prix
+        /// </summary>
+
+        [Fact]
+        public void CheckProductViewModel_DoitdRenvoyerError_SiPriceIsMissing()
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Price = null;
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("MissingPrice"));
+
+        }
+
+
+
+
 
         // TODO write test methods to ensure a correct coverage of all possibilities
 

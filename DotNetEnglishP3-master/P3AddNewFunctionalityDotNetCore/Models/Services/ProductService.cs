@@ -99,10 +99,10 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //    modelErrors.Add(_localizer["MissingName"]);
             //}
 
-            if (product.Price == null || string.IsNullOrWhiteSpace(product.Price))
-            {
-                modelErrors.Add(_localizer["MissingPrice"]);
-            }
+            //if (product.Price == null || string.IsNullOrWhiteSpace(product.Price))
+            //{
+            //    modelErrors.Add(_localizer["MissingPrice"]);
+            //}
 
             if (!Double.TryParse(product.Price, out double pc))
             {

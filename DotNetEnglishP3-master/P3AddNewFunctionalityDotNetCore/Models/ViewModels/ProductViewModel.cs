@@ -17,6 +17,7 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
 
         public string Stock { get; set; }
 
+        [Required(ErrorMessageResourceName = "MissingPrice", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService), AllowEmptyStrings = false)]
         public string Price { get; set; }
     }
 }
