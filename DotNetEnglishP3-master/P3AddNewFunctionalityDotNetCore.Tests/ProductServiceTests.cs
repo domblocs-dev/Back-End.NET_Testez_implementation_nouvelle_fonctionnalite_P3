@@ -153,6 +153,30 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
         }
 
+        /// <summary>
+        ///  Verifie que le produit ne peut pas être créé si le stock saisie n'est pas un nombre entier
+        /// </summary>
+        [Fact]
+        public void CheckProductViewModel_DoitdRenvoyerError_QuandLeStockPasUnEntier()
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Stock = "dix";
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("QuantityNotAnInteger"));
+
+        }
+
+
+
+
 
 
 
