@@ -8,12 +8,11 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            Decimal.TryParse(value.ToString(), NumberStyles.Number, CultureInfo.CurrentCulture, out decimal decimalValue);
+            double.TryParse(value.ToString(), NumberStyles.Number, CultureInfo.CurrentCulture, out double decimalValue);
             if (decimalValue.ToString() == value.ToString())
                 return ValidationResult.Success;
             else
                 return new ValidationResult(ErrorMessageString);
-
         }
     }
 }
