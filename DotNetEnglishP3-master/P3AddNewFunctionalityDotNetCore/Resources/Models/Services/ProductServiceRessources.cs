@@ -24,11 +24,11 @@ namespace P3AddNewFunctionalityDotNetCore.Resources.Models.Services
                 return resourceManager.GetString("MissingPrice", resourceCulture);
             }
         }
-        public static string MissingStock
+        public static string MissingQuantity
         {
             get
             {
-                return resourceManager.GetString("MissingStock", resourceCulture);
+                return resourceManager.GetString("MissingQuantity", resourceCulture);
             }
         }
         public static string PriceNotANumber

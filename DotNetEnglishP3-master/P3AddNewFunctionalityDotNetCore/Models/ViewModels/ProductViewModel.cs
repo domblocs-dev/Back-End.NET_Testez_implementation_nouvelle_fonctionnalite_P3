@@ -22,6 +22,7 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
         [Required(ErrorMessageResourceName = "MissingPrice", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService), AllowEmptyStrings = false)]
         [RegularExpression(@"^\d+(?:[.,]\d+)?$", ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
         [DecimalByCultureAttribute(ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
+        [NumberGreaterThanZero(ErrorMessageResourceName = "PriceNotGreaterThanZero", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
         public string Price { get; set; }
     }
 }

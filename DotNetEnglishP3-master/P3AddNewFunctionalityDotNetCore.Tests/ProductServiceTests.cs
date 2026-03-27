@@ -19,7 +19,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         /// </summary>
 
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_SiNameIsMissing()
+        public void CheckProductViewModel_DoitdRenvoyerError_SiNomEstManquant()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -41,7 +41,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         /// </summary>
 
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_SiPriceIsMissing()
+        public void CheckProductViewModel_DoitdRenvoyerError_SiPrixEstManquant()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -93,7 +93,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         [InlineData("12,2", "fr")]
         [InlineData("12.2", "en")]
         [InlineData("12,2", "es")]
-        public void ProductViewModel_ShouldBeValid_WhenPriceIsDecimalForCulture(string price, string culture)
+        public void CheckProductViewModel_DoitEtreValid_DansLePrixDecimalDeLaCulture(string price, string culture)
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -110,6 +110,28 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
         }
 
+        /// <summary>
+        ///  Un produit doit avoir un prix suppérieur à 0
+        /// </summary>
+        [Fact]
+        public void CheckProductViewModel_DoitdRenvoyerError_QuandLePrixInferieurAZero()
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Price = (-1).ToString();
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("PriceNotGreaterThanZero"));
+
+        }
+
+        
 
 
 

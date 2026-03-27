@@ -104,20 +104,20 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //    modelErrors.Add(_localizer["MissingPrice"]);
             //}
 
-            if (!Double.TryParse(product.Price, out double pc))
+            //if (!Double.TryParse(product.Price, out double pc))
             //{
             //    modelErrors.Add(_localizer["PriceNotANumber"]);
             //}
             //else
-            {
-                if (pc <= 0)
-                    modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
-            }
+            //{
+            //    if (pc <= 0)
+            //        modelErrors.Add(_localizer["PriceNotGreaterThanZero"]);
+            //}
 
 
             if (product.Stock == null || string.IsNullOrWhiteSpace(product.Stock))
             {
-                modelErrors.Add(_localizer["MissingQuantity"]);
+                modelErrors.Add(_localizer["MissingStock"]);
             }
 
             if (!int.TryParse(product.Stock, out int qt))
