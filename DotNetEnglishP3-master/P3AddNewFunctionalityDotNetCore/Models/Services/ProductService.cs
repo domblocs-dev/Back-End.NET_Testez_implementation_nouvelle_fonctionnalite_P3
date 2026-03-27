@@ -91,9 +91,9 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
         }
 
         // TODO this is an example method, remove it and perform model validation using data annotations
-        public List<string> CheckProductModelErrors(ProductViewModel product)
-        {
-            List<string> modelErrors = new List<string>();
+        //public List<string> CheckProductModelErrors(ProductViewModel product)
+        //{
+        //    List<string> modelErrors = new List<string>();
             //if (product.Name == null || string.IsNullOrWhiteSpace(product.Name))
             //{
             //    modelErrors.Add(_localizer["MissingName"]);
@@ -130,8 +130,8 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //        modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
             //}
 
-            return modelErrors;
-        }
+        //    return modelErrors;
+        //}
 
         public void SaveProduct(ProductViewModel product)
         {
