@@ -135,7 +135,7 @@
   <data name="QuantityNotAnInteger" xml:space="preserve">
     <value>El valor introducido para la acción debe ser un entero</value>
   </data>
-  <data name="StockNotGreaterThanZero" xml:space="preserve">
+  <data name="QuantityNotGreaterThanZero" xml:space="preserve">
     <value>La acción debe ser mayor que cero</value>
   </data>
 </root>

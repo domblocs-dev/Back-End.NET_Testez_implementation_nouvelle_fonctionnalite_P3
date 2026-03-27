@@ -174,7 +174,26 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
         }
 
+        /// <summary>
+        ///  Vérifie qu'un produit ne peut pas être créé si la quantité de stock <=0
+        /// </summary>
+        [Fact]
+        public void CheckProductViewModel_DoitdRenvoyerError_QuandLeStockPasSuperieurAZero()
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Stock = (-1).ToString();
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
 
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("QuantityNotGreaterThanZero"));
+
+        }
 
 
 

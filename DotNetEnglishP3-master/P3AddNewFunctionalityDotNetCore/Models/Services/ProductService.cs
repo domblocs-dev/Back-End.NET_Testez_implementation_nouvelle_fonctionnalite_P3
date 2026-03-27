@@ -120,15 +120,15 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //    modelErrors.Add(_localizer["MissingStock"]);
             //}
 
-            if (!int.TryParse(product.Stock, out int qt))
+            //if (!int.TryParse(product.Stock, out int qt))
             //{
             //    modelErrors.Add(_localizer["StockNotAnInteger"]);
             //}
             //else
-            {
-                if (qt <= 0)
-                    modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
-            }
+            //{
+            //    if (qt <= 0)
+            //        modelErrors.Add(_localizer["StockNotGreaterThanZero"]);
+            //}
 
             return modelErrors;
         }

@@ -19,6 +19,7 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
 
         [Required(ErrorMessageResourceName = "MissingQuantity", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService), AllowEmptyStrings = false)]
         [RegularExpression(@"^-?\d+$", ErrorMessageResourceName = "QuantityNotAnInteger", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
+        [NumberGreaterThanZero(ErrorMessageResourceName = "QuantityNotGreaterThanZero", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
         public string Stock { get; set; }
 
         [Required(ErrorMessageResourceName = "MissingPrice", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService), AllowEmptyStrings = false)]

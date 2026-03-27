@@ -135,7 +135,7 @@
   <data name="QuantityNotAnInteger" xml:space="preserve">
     <value>La valeur saisie pour le stock doit être un entier</value>
   </data>
-  <data name="StockNotGreaterThanZero" xml:space="preserve">
+  <data name="QuantityNotGreaterThanZero" xml:space="preserve">
     <value>La stock doit être supérieure à zéro</value>
   </data>
 </root>

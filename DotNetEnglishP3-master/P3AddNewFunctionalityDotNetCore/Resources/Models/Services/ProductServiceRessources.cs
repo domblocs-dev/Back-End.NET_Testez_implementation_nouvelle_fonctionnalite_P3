@@ -52,11 +52,11 @@ namespace P3AddNewFunctionalityDotNetCore.Resources.Models.Services
                 return resourceManager.GetString("QuantityNotAnInteger", resourceCulture);
             }
         }
-        public static string StockNotGreaterThanZero
+        public static string QuantityNotGreaterThanZero
         {
             get
             {
-                return resourceManager.GetString("StockNotGreaterThanZero", resourceCulture);
+                return resourceManager.GetString("QuantityNotGreaterThanZero", resourceCulture);
             }
         }
     }
