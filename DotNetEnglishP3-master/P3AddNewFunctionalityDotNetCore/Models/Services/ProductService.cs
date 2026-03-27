@@ -115,10 +115,10 @@ namespace P3AddNewFunctionalityDotNetCore.Models.Services
             //}
 
 
-            if (product.Stock == null || string.IsNullOrWhiteSpace(product.Stock))
-            {
-                modelErrors.Add(_localizer["MissingStock"]);
-            }
+            //if (product.Stock == null || string.IsNullOrWhiteSpace(product.Stock))
+            //{
+            //    modelErrors.Add(_localizer["MissingStock"]);
+            //}
 
             if (!int.TryParse(product.Stock, out int qt))
             {

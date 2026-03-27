@@ -131,8 +131,27 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
 
         }
 
-        
 
+        /// <summary>
+        /// Verifie qu'un produit doit être créé avec une quantité de stock
+        /// </summary>
+        [Fact]
+        public void CheckProductViewModel_DoitdRenvoyerError_QuandPasDeStock()
+        {
+            // Arrange
+            ProductViewModel newProduct = GetCorrectProductViewModel();
+            newProduct.Stock = null;
+            var validationContext = new ValidationContext(newProduct);
+            var validationResults = new List<ValidationResult>();
+
+            // Act
+            bool isValid = Validator.TryValidateObject(newProduct, validationContext, validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.False(isValid);
+            Assert.Contains(validationResults, r => r.ErrorMessage == GetResourceMessage("MissingQuantity"));
+
+        }
 
 
 
