@@ -36,7 +36,7 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
         //    @"^-?\d+(\.\d{1,2})?$",
         //    ErrorMessageResourceName = "PriceNotANumber",
         //    ErrorMessageResourceType = typeof(ResourcesProductService))]
-        [NumberGreaterThanZero(ErrorMessageResourceName = "PriceNotGreaterThanZero", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
+        [NumberGreaterThanZero(ErrorMessageResourceName = "PriceNotGreaterThanZero", ErrorMessageResourceType = typeof(ResourcesProductService))]
         //[Range(
         //    0.01,
         //    double.MaxValue,

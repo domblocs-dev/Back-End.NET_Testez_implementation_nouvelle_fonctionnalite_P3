@@ -111,7 +111,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         }
 
         /// <summary>
-        ///  Un produit doit avoir un prix suppérieur à 0
+        ///  Un produit doit avoir un prix supérieur à 0
         /// </summary>
         [Fact]
         public void CheckProductViewModel_DoitdRenvoyerError_QuandLePrixInferieurAZero()
