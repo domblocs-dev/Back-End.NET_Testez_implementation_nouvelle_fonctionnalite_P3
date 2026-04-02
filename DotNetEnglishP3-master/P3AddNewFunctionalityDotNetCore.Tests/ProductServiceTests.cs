@@ -19,7 +19,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         /// </summary>
 
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_SiNomEstManquant()
+        public void CheckProductViewModel_1_DoitdRenvoyerError_SiNomEstManquant()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -41,7 +41,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         /// </summary>
 
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_SiPrixEstManquant()
+        public void CheckProductViewModel_2_DoitdRenvoyerError_SiPrixEstManquant()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -69,7 +69,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         [InlineData("12.2", "fr")]
         [InlineData("12,2", "en")]
         [InlineData("12.2", "es")]
-        public void CheckProductViewModel_DoitdRenvoyerError_QuandLePrixNeCorrespondPasALaCulture(string price, string culture)
+        public void CheckProductViewModel_3_DoitdRenvoyerError_QuandLePrixNeCorrespondPasALaCulture(string price, string culture)
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -93,7 +93,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         [InlineData("12,2", "fr")]
         [InlineData("12.2", "en")]
         [InlineData("12,2", "es")]
-        public void CheckProductViewModel_DoitEtreValid_DansLePrixDecimalDeLaCulture(string price, string culture)
+        public void CheckProductViewModel_3Bis_DoitEtreValid_DansLePrixDecimalDeLaCulture(string price, string culture)
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -114,7 +114,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         ///  Un produit doit avoir un prix supérieur à 0
         /// </summary>
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_QuandLePrixInferieurAZero()
+        public void CheckProductViewModel_4_DoitdRenvoyerError_QuandLePrixInferieurAZero()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -136,7 +136,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         /// Verifie qu'un produit doit être créé avec une quantité de stock
         /// </summary>
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_QuandPasDeStock()
+        public void CheckProductViewModel_5_DoitdRenvoyerError_QuandPasDeStock()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -157,7 +157,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         ///  Verifie que le produit ne peut pas être créé si le stock saisie n'est pas un nombre entier
         /// </summary>
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_QuandLeStockPasUnEntier()
+        public void CheckProductViewModel_6_DoitdRenvoyerError_QuandLeStockPasUnEntier()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();
@@ -178,7 +178,7 @@ namespace P3AddNewFunctionalityDotNetCore.Tests
         ///  Vérifie qu'un produit ne peut pas être créé si la quantité de stock <=0
         /// </summary>
         [Fact]
-        public void CheckProductViewModel_DoitdRenvoyerError_QuandLeStockPasSuperieurAZero()
+        public void CheckProductViewModel_7_DoitdRenvoyerError_QuandLeStockPasSuperieurAZero()
         {
             // Arrange
             ProductViewModel newProduct = GetCorrectProductViewModel();

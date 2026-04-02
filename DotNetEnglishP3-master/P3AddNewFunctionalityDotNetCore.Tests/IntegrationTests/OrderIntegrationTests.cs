@@ -15,6 +15,7 @@ using P3AddNewFunctionalityDotNetCore.Models.Services;
 using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using Xunit;
 
+namespace P3AddNewFunctionalityDotNetCore.Tests.IntegrationTests;
 
 
 public class OrderIntegrationTests
@@ -22,12 +23,10 @@ public class OrderIntegrationTests
     private readonly IConfiguration _configuration;
     private readonly IStringLocalizer<OrderController> _localizerOrderController;
     private readonly IStringLocalizer<ProductService> _localizerProductService;
-    private readonly IStringLocalizer<ProductController> _localizerProductController;
-
     private const string ConnectionString = "Server=.;Database=P3Referential-2f561d3b-493f-46fd-83c9-6e2643e7bd0a;Trusted_Connection=True;MultipleActiveResultSets=true";
 
     [Fact]
-    public async Task OrderSaveProduct_SaveOrder_DecreaseProductStock()
+    public async Task OrderSaveProduct_1_SaveOrder_DecreaseProductStock()
     {
         // => Arrange
         // Création d'un DbContext EF Core qui pointe vers la base SQL Server
@@ -85,14 +84,14 @@ public class OrderIntegrationTests
             if (product != null)
                 await CleanTestData(context, product);
         }
-    
+
 
     }
 
 
 
     [Fact]
-    public async Task OrderSaveProduct_SaveOrder_ClearCart()
+    public async Task OrderSaveProduct_2_SaveOrder_ClearCart()
     {
         // ==> Arrange
         // Création d'un DbContext EF Core qui pointe vers la base SQL Server
@@ -173,13 +172,13 @@ public class OrderIntegrationTests
         return new OrderViewModel
         {
             Lines = new List<CartLine>
+            {
+                new CartLine
                 {
-                    new CartLine
-                    {
-                        Product = new Product { Id = id },
-                        Quantity = quantity
-                    }
-                },
+                    Product = new Product { Id = id },
+                    Quantity = quantity
+                }
+            },
             Name = "Mon nom",
             Address = "Mon adresse",
             City = "Ma ville",
