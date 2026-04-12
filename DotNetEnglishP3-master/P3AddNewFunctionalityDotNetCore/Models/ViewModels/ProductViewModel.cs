@@ -21,7 +21,6 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
 
         [Required(ErrorMessageResourceName = "MissingQuantity", ErrorMessageResourceType = typeof(ResourcesProductService), AllowEmptyStrings = false)]
         [RegularExpression(@"^-?\d+$", ErrorMessageResourceName = "QuantityNotAnInteger", ErrorMessageResourceType = typeof(ResourcesProductService))]
-        //[NumberGreaterThanZero(ErrorMessageResourceName = "QuantityNotGreaterThanZero", ErrorMessageResourceType = typeof(Resources.Models.Services.ProductService))]
         [Range(
             1,
             int.MaxValue,
@@ -30,18 +29,8 @@ namespace P3AddNewFunctionalityDotNetCore.Models.ViewModels
         public string Stock { get; set; }
 
         [Required(ErrorMessageResourceName = "MissingPrice", ErrorMessageResourceType = typeof(ResourcesProductService), AllowEmptyStrings = false)]
-        //[RegularExpression(@"^\d+(?:[.,]\d+)?$", ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(ResourcesProductService))]
         [DecimalByCultureAttribute(ErrorMessageResourceName = "PriceNotANumber", ErrorMessageResourceType = typeof(ResourcesProductService))]
-        //[RegularExpression(
-        //    @"^-?\d+(\.\d{1,2})?$",
-        //    ErrorMessageResourceName = "PriceNotANumber",
-        //    ErrorMessageResourceType = typeof(ResourcesProductService))]
         [NumberGreaterThanZero(ErrorMessageResourceName = "PriceNotGreaterThanZero", ErrorMessageResourceType = typeof(ResourcesProductService))]
-        //[Range(
-        //    0.01,
-        //    double.MaxValue,
-        //    ErrorMessageResourceName = "PriceNotGreaterThanZero",
-        //    ErrorMessageResourceType = typeof(ResourcesProductService))]
         public string Price { get; set; }
     }
 }
