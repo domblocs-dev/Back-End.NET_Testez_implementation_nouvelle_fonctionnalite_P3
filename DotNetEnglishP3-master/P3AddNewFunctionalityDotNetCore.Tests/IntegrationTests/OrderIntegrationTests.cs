@@ -14,6 +14,7 @@ using P3AddNewFunctionalityDotNetCore.Models.Repositories;
 using P3AddNewFunctionalityDotNetCore.Models.Services;
 using P3AddNewFunctionalityDotNetCore.Models.ViewModels;
 using Xunit;
+using Moq;
 
 namespace P3AddNewFunctionalityDotNetCore.Tests.IntegrationTests;
 
@@ -148,6 +149,56 @@ public class OrderIntegrationTests
         }
 
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///MOCK
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///
+
+    [Fact]
+    public void OrderSaveProduct_1_SaveOrder_DecreaseProductStockMock()
+    {
+        // => Arrange: utilisation de mocks à la place de la BDD
+        Cart cart = new Cart();
+
+        var mockProductRepository = new Mock<P3AddNewFunctionalityDotNetCore.Models.Repositories.IProductRepository>();
+        var mockOrderRepository = new Mock<P3AddNewFunctionalityDotNetCore.Models.Repositories.IOrderRepository>();
+
+        var localizerProductService = Mock.Of<IStringLocalizer<ProductService>>();
+        var localizerOrderController = Mock.Of<IStringLocalizer<OrderController>>();
+
+        // Création de product
+        var product = new Product { Id = 1, Name = "Le produit a commander 1", Quantity = 10, Price = 9.99 };
+
+        // Simulation de création du produit (GetProduct).
+        mockProductRepository.Setup(r => r.GetProduct(product.Id)).ReturnsAsync(product);
+
+        // instantiate services with mocks
+        var productService = new ProductService(cart, mockProductRepository.Object, mockOrderRepository.Object, localizerProductService);
+        var orderService = new OrderService(cart, mockOrderRepository.Object, productService);
+
+        // Crée une instance de OrderController en injectant les dépendances
+        var orderController = new OrderController(cart, orderService, localizerOrderController);
+
+        // add item to cart
+        cart.AddItem(product, 2);
+
+        // create order view model
+        OrderViewModel orderViewModel = CreateOrderViewModel(product.Id, 2);
+
+
+        // => ACT, on passe la commande
+        orderController.Index(orderViewModel);
+
+
+        // => ASSERT: ·	On vérifie que le stock a bien diminué de la quantité de la commande (2) et que le panier est vide
+        mockProductRepository.Verify(r => r.UpdateProductStocks(product.Id, 2), Times.Once);
+        Assert.Empty(cart.Lines);
+    }
+
+
+
 
 
 
